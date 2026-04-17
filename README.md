@@ -1,4 +1,4 @@
-# 🎬SISTEMA DE LOCAÇÃO DE FILMES - ENACFLIX (JDBC)
+# 🎬SISTEMA DE LOCAÇÃO DE FILMES - SENACFLIX (JDBC)
 ---
 #### Este projeto visa o desenvolvimento de um sistema simplificado e prático de locadora de filmes utilizando java.
  ---
