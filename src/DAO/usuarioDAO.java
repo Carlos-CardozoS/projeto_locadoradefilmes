@@ -2,13 +2,11 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import util.seguranca;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import locadora.conexaowork;
 import model.usuario;
-
-
+import util.seguranca;
 
 public class usuarioDAO {
     
@@ -17,40 +15,54 @@ public class usuarioDAO {
     public usuarioDAO(){
         this.conn = new conexaowork().getConnection();
     }
-    
-    public void cadastrouser(usuario u, String senhauser) throws SQLException{
-       String sql = "insert into usuarios (login, senha_hash) values (?,?)";
-       try{
-           PreparedStatement stmt = conn.prepareStatement(sql);
-           stmt.setString(1, u.getLogin());
-           stmt.setString(2, seguranca.gerarHash(senhauser));
-           
-           stmt.execute();
-           stmt.close();
-           
-           
-       } catch (SQLException e){
-           throw new RuntimeException("Erro no cadastro do utilizador: " +e.getMessage());  
-       }    
+
+    public boolean criarLogin(String usuario, String senhaCriptografada) throws SQLException {
+        String sql = "INSERT INTO usuarios (login, senha_hash) VALUES (?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, usuario);
+            stmt.setString(2, senhaCriptografada);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao cadastrar na tabela usuarios: " + e.getMessage());
+            return false;
+        }
     }
     
-    public boolean autenticacao(String login, String senhauser) throws SQLException{
-        String sql = "select * from usuarios where login = ? and senha_hash = ?";
-        try{
-          PreparedStatement stmt = conn.prepareStatement(sql);
-          stmt.setString(1, login);
-          stmt.setString(2, seguranca.gerarHash(senhauser));
-          
-          ResultSet rs = stmt.executeQuery();
-          
-          boolean liberado = rs.next();
-          
-          stmt.close();
+    public boolean autenticacao(String login, String senhaCriptografada) throws SQLException {
+        String sql = "SELECT * FROM usuarios WHERE login = ? AND senha_hash = ?";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, login);
+            stmt.setString(2, senhaCriptografada);
             
-            return liberado;
-            
-        }catch (SQLException e){
-            throw new RuntimeException("Erro na autaenticação: " +e.getMessage());  
-    }   
-}   
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next(); 
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro na autenticação: " + e.getMessage());
+        }
+    }
+    
+    public usuario buscarPorLogin(String login) {
+    String sql = "SELECT id_user, login FROM usuarios WHERE login = ?";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, login);
+        
+                try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                usuario user = new usuario();
+                user.setId(rs.getInt("id_user"));
+                user.setLogin(rs.getString("login"));
+                
+                return user; 
+            }
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao buscar usuário: " + e.getMessage());
+    }
+    return null; 
+}
+    
 }

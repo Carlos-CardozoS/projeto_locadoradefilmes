@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/locadora/Locadora.java</file>
-            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/util/exportador.java</file>
-            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/util/importador.java</file>
-            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/util/seguranca.java</file>
-            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/DAO/filmeDAO.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/MenuPrincipal.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/Alocação.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/AlterarStatus.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/CadastrarFilme.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/CadastrarGenero.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/ListarFilmes.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/Estatisticas.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/Exportação.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/Importação.java</file>
+            <file>file:/C:/Users/CARLOSHENRIQUECARDOZ/Documents/NetBeansProjects/locadora/src/view/LocarFilme.java</file>
         </group>
     </open-files>
 </project-private>

@@ -295,7 +295,7 @@ public class Locadora {
         System.out.println("Total de filmes: " + totalAcervo);
         System.out.println("Filmes prontos para alugar: " + totalDisponivel);
         System.out.println("Filmes atualmente com clientes: " + totalLocados);
-        
+            
         if (totalAcervo > 0) {
             double taxaOcupacao = ((double) totalLocados / totalAcervo) * 100;
             System.out.printf("Taxa de ocupação: %.1f%%\n", taxaOcupacao);

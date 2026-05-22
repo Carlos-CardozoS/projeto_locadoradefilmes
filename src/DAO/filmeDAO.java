@@ -339,7 +339,55 @@ public List<filme> listarPorStatus(String status) throws SQLException {
     }
     return lista;
 }
+
+public List<genero> listarGenerosLimpos() {
+    List<genero> lista = new ArrayList<>();
+    String sql = "SELECT * FROM generos ORDER BY nome ASC";
+    
+    try {
+        PreparedStatement pst = conn.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        
+        while (rs.next()) {
+            genero g = new genero();
+            g.setId(rs.getInt("id_genero"));
+            g.nome = rs.getString("nome");
+            lista.add(g);
+        }
+    } catch (SQLException e) {
+        System.err.println("Erro ao listar gêneros: " + e.getMessage());
+    }
+    return lista;
+}
+
+public void deletarGenero(int id) {
+    String sql = "DELETE FROM generos WHERE id_genero = ?";
+    try {
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao deletar gênero: " + e.getMessage());
+    }
+}
    
+
+public List<String> listarNomesGeneros() throws SQLException {
+    List<String> nomes = new ArrayList<>();
+    String sql = "SELECT nome FROM generos ORDER BY nome ASC";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+        
+        while (rs.next()) {
+            nomes.add(rs.getString("nome"));
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Erro ao buscar nomes dos gêneros: " + e.getMessage());
+    }
+    return nomes;
+}
    
    
 }
